@@ -1,5 +1,5 @@
 #pragma once
-#include "../Level/LevelNumber.h"
+#include "../include/Level/LevelNumber.h"
 
 namespace Level
 {
@@ -11,17 +11,17 @@ namespace Level
 		LevelController* level_controller;
 		LevelNumber current_level;
 
-		void CreateLevelController();
-		void Destroy();
+		void createLevelController();
+		void destroy();
 
 	public:
 		LevelService();
 		~LevelService();
 
-		void Initialize();
-		void Update();
-		void Render();
+		void initialize();
+		void update();
+		void render();
 
-		void CreateLevel(LevelNumber level_to_load);
+		void createLevel(LevelNumber level_to_load);
 	};
 }

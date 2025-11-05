@@ -1,30 +1,33 @@
 #include <iostream>
 #include "../include/Level/LevelController.h"
+#include "../include/Level/LevelView.h"
 
 namespace Level
 {
 	LevelController::LevelController()
 	{
-
+		level_model = new LevelModel();
+		level_view = new LevelView();
 	}
 	LevelController::~LevelController()
 	{
-		Destroy();
+		delete level_model;
+		delete level_view;
 	}
-	void LevelController::Initialize()
+	void LevelController::initialize()
 	{
-
+		level_view->initialize();
+		level_model->initialize(level_view->getGridWidth(),level_view->getGridHeight());
 	}
-	void LevelController::Update()
+	void LevelController::update()
 	{
-
+		level_view->update();
 	}
-	void LevelController::Render()
+	void LevelController::render()
 	{
-
+		level_view->render();
 	}
-	void LevelController::Destroy()
-	{
+	float LevelController::getCellWidth() { return level_model->getCellWidth(); }
+	float LevelController::getCellHeight() { return level_model->getCellHeight(); }
 
-	}
 }

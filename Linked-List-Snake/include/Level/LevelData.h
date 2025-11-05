@@ -1,5 +1,5 @@
 #pragma once
-#include "../../../Include/Level/LevelService.h"
+#include "Level/LevelNumber.h"
 namespace Level
 {
 	struct LevelData

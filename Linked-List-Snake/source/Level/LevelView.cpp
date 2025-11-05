@@ -30,7 +30,7 @@ namespace Level
 		sf::RenderWindow* game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
 		sf::Vector2f background_size = sf::Vector2f(game_window->getSize().x, game_window->getSize().y);
 
-		background_rectangle->initialize(background_size, sf::Vector2f(0, 0), 0, background_color));
+		background_rectangle->initialize(background_size, sf::Vector2f(0, 0), 0, background_color);
 		background_rectangle->show();
 	}
 	void LevelView::initializeBorder()
@@ -45,10 +45,10 @@ namespace Level
 	}
 	void LevelView::calculateGridExtents()
 	{
-		sf::RenderWindow& game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
+		sf::RenderWindow* game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
 
-		grid_width = game_window.getSize().x - 2 * border_left_offset;
-		grid_height = game_window.getSize().y - 2 * border_top_offset;
+		grid_width = game_window->getSize().x - 2 * border_left_offset;
+		grid_height = game_window->getSize().y - 2 * border_top_offset;
 	}
 	void LevelView::update()
 	{

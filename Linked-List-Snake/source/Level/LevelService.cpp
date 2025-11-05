@@ -1,40 +1,39 @@
-#include "../../../Include/Level/LevelService.h"
-#include "../../../Include/Level/LevelController.h"
+#include <iostream>
+#include "../include/Level/LevelService.h"
+#include "../include/Level/LevelController.h"
 
 namespace Level
 {
-	using namespace Global;
-
 	LevelService::LevelService()
 	{
 		level_controller = nullptr;
-		CreateLevelController();
+		createLevelController();
 	}
 	LevelService::~LevelService()
 	{
-		Destroy();
+		destroy();
 	}
-	void LevelService::CreateLevelController()
+	void LevelService::createLevelController()
 	{
 		level_controller = new LevelController();
 	}
-	void LevelService::Initialize()
+	void LevelService::initialize()
 	{
-		level_controller->Initialize();
+		level_controller->initialize();
 	}
-	void LevelService::Update()
+	void LevelService::update()
 	{
-		level_controller->Update();
+		level_controller->update();
 	}
-	void LevelService::Render()
+	void LevelService::render()
 	{
-		level_controller->Render();
+		level_controller->render();
 	}
-	void LevelService::CreateLevel(LevelNumber level_to_load)
+	void LevelService::createLevel(LevelNumber level_to_load)
 	{
 		current_level = level_to_load;
 	}
-	void LevelService::Destroy()
+	void LevelService::destroy()
 	{
 		delete level_controller;
 	}
