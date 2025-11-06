@@ -2,11 +2,15 @@
 #include "../include/Global/ServiceLocator.h"
 #include "../include/Global/Config.h"
 #include "../include/Main/GameService.h"
+#include "../include/Event/EventService.h"
+#include "../include/Sound/SoundService.h"
 
 namespace UI
 {
 	using namespace UIElement;
 	using namespace Global;
+	using namespace Event;
+	using namespace Sound;
 	using namespace Main;
 	using namespace Level;
 
@@ -70,12 +74,13 @@ namespace UI
 		{
 			ServiceLocator::getInstance()->getSoundService()->playSound(Sound::SoundType::BUTTON_CLICK);
 			GameService::setGameState(GameState::GAMEPLAY);
+			ServiceLocator::getInstance()->getLevelService()->createLevel(LevelNumber::ONE);
 		}
 		void LevelSelectionUIController::doubleLinkedListButtonCallback()
 		{
 			ServiceLocator::getInstance()->getSoundService()->playSound(Sound::SoundType::BUTTON_CLICK);
 			GameService::setGameState(GameState::GAMEPLAY);
-
+			ServiceLocator::getInstance()->getLevelService()->createLevel(LevelNumber::TWO);
 		}
 		void LevelSelectionUIController::menuButtonCallback()
 		{

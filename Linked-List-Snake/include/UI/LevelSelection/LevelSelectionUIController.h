@@ -38,15 +38,15 @@ namespace UI
 
 			void registerButtonCallback();
 
-			void show();
 			void destroy();
 		public:
 			LevelSelectionUIController();
 			~LevelSelectionUIController();
 
-			void initialize();
-			void update();
-			void render();
+			void initialize()override;
+			void update()override;
+			void render()override;
+			void show()override;
 		
 		};
 	}

@@ -88,7 +88,7 @@ namespace UI
 		case GameState::CREDITS:
 			return credits_screen_ui_controller;
 
-		case GameState::GAMEPLAY:
+		case GameState::LEVEL_SELECTION:
 			return level_selection_ui_controller;
 
 		default:
