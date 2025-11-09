@@ -14,7 +14,7 @@ namespace Level
 		const sf::Color background_color = sf::Color(180, 200, 160);
 
 		RectangleShapeView* background_rectangle;
-		RectangleShapeView* border_ractangle;
+		RectangleShapeView* border_rectangle;
 
 		float grid_width;
 		float grid_height;

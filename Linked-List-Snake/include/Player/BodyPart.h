@@ -36,10 +36,10 @@ namespace Player
 		BodyPart();
 		~BodyPart();
 
-		void initialize(float width,float height,sf::Vector2i pos,Direction dir);
+		void initialize(float width, float height, sf::Vector2i pos, Direction dir);
 		void updatePosition();
 		void render();
-		
+
 
 		void setDirection(Direction new_direction);
 		Direction getDirection();
@@ -47,6 +47,6 @@ namespace Player
 		sf::Vector2i getNextPosition();
 
 		void setPosition(sf::Vector2i position);
-		sf::Vector2i getPosition()
+		sf::Vector2i getPosition();
 	};
 }

@@ -16,11 +16,13 @@ namespace LinkedList
 		Direction default_direction;
 
 		Node* createNode();
+		
 	public:
 		SingleLinkedList();
 		~SingleLinkedList();
 
 		void initialize(float width, float height, sf::Vector2i position, Direction direction);
 		void render();
+		void createHeadNote();
 	};
 }
