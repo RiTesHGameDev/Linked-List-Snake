@@ -17,12 +17,14 @@ namespace LinkedList
 
 		Node* createNode();
 		
+		sf::Vector2i getNewNodePosition(Node* reference_node);
 	public:
 		SingleLinkedList();
 		~SingleLinkedList();
 
 		void initialize(float width, float height, sf::Vector2i position, Direction direction);
 		void render();
-		void createHeadNote();
+
+		void insertNodeAtTail();
 	};
 }

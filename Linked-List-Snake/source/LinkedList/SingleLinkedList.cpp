@@ -17,18 +17,69 @@ namespace LinkedList
 		default_position = position;
 		default_direction = direction;
 	}
+
 	void SingleLinkedList::render()
 	{
-		head_node->body_part.render();
+		Node* cur_node = head_node;
+
+		while (cur_node != nullptr)
+		{
+			cur_node->body_part.render();
+			cur_node = cur_node->next;
+		}
 	}
+
 	Node* SingleLinkedList::createNode()
 	{
 		return new Node();
 	}
-	void SingleLinkedList::createHeadNote()
+
+	sf::Vector2i SingleLinkedList::getNewNodePosition(Node* reference_node)
 	{
-		head_node = createNode();
-		head_node->body_part.initialize(node_width, node_height, default_position, default_direction);
+		Direction reference_direction = reference_node->body_part.getDirection();
+		sf::Vector2i reference_position = reference_node->body_part.getPosition();
+
+		switch (reference_direction)
+		{
+		case Direction::UP:
+			return sf::Vector2i(reference_position.x , reference_position.y - 1);
+			break;
+		case Direction::DOWN:
+			return sf::Vector2i(reference_position.x, reference_position.y + 1);
+			break;
+		case Direction::LEFT:
+			return sf::Vector2i(reference_position.x + 1, reference_position.y);
+			break;
+		case Direction::RIGHT:
+			return sf::Vector2i(reference_position.x - 1, reference_position.y);
+			break;
+		default:
+			default_position;
+			break;
+		}
+	}
+
+	void SingleLinkedList::insertNodeAtTail()
+	{
+		Node* new_node = createNode();
+		Node* cur_node = head_node;
+
+		//if the list is empty set the new node as the head
+		if (cur_node == nullptr)
+		{
+			head_node = new_node;
+			new_node->body_part.initialize(node_width, node_height, default_position, default_direction);
+			return;
+		}
+		//traverse to the end
+		while (cur_node->next != nullptr)
+		{
+			cur_node = cur_node->next;
+		}
+
+		//attach new node at the end
+		cur_node->next = new_node;
+		new_node->body_part.initialize(node_width, node_height, getNewNodePosition(cur_node), cur_node->body_part.getDirection());
 	}
 	
 }
