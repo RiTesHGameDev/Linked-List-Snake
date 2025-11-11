@@ -26,6 +26,11 @@ namespace Player
 		//LinkedList
 		SingleLinkedList* single_linked_list;
 
+		//delayed update or Snake speed
+		float elapsed_duration;
+		const float movement_frame_duration = 0.1f;
+
+		void delayedUpdate();
 		void createLinkedList();
 
 		void processPlayerInput();
