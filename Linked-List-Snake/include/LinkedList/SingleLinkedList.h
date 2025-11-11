@@ -28,5 +28,6 @@ namespace LinkedList
 		void insertNodeAtTail();
 		void updateNodeDirection(Direction direction_to_set);
 		void updateNodePosition();
+		void processNodeCollision();
 	};
 }
