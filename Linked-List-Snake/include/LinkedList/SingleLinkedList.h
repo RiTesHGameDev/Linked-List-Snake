@@ -18,6 +18,11 @@ namespace LinkedList
 		Node* createNode();
 		
 		sf::Vector2i getNewNodePosition(Node* reference_node);
+
+		const float restart_duration = 2.0f;
+
+		void removeNodeAtHead();
+		void reset();
 	public:
 		SingleLinkedList();
 		~SingleLinkedList();
@@ -28,6 +33,7 @@ namespace LinkedList
 		void insertNodeAtTail();
 		void updateNodeDirection(Direction direction_to_set);
 		void updateNodePosition();
-		void processNodeCollision();
+		bool processNodeCollision();
+		void removeAllNodes();
 	};
 }

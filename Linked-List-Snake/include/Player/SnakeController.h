@@ -30,6 +30,10 @@ namespace Player
 		float elapsed_duration;
 		const float movement_frame_duration = 0.1f;
 
+		//reset
+		const float restart_duration = 2.0f;
+		float restart_counter;
+
 		void delayedUpdate();
 		void createLinkedList();
 
