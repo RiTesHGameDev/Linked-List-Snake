@@ -91,11 +91,10 @@ namespace Player
 			elapsed_duration = 0.0f;
 			updateSnakeDirection();
 			processSnakeCollision();
+
 			if (current_snake_state == SnakeState::ALIVE)
-			{
 				moveSnake();
 				current_input_state = InputState::WAITING;
-			}
 		}
 	}
 	void SnakeController::processSnakeCollision()
