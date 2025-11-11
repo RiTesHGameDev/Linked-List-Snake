@@ -19,10 +19,8 @@ namespace LinkedList
 		
 		sf::Vector2i getNewNodePosition(Node* reference_node);
 
-		const float restart_duration = 2.0f;
-
 		void removeNodeAtHead();
-		void reset();
+		
 	public:
 		SingleLinkedList();
 		~SingleLinkedList();
