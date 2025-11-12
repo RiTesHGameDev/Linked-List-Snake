@@ -14,6 +14,7 @@ namespace Level
 		void createLevelController();
 		void destroy();
 		void spawnPlayer();
+		void spawnLevelElements(LevelNumber level_to_load);
 
 	public:
 		LevelService();
