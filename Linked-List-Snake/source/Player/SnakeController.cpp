@@ -136,6 +136,10 @@ namespace Player
 	{
 		single_linked_list = new SingleLinkedList();
 	}
+	std::vector<sf::Vector2i> SnakeController::getCurrentSnakePositionList()
+	{
+		return single_linked_list->getNodesPositionList();
+	}
 	void SnakeController::setSnakeState(SnakeState state)
 	{
 		current_snake_state = state;
