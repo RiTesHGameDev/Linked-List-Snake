@@ -5,10 +5,16 @@
 
 namespace Food
 {
+	enum FoodSpawningStatus
+	{
+		ACTIVE,
+		IN_ACTIVE,
+	};
 	class FoodService
 	{
 	private:
 		FoodItem* current_food_item;
+		FoodSpawningStatus current_spawning_status;
 
 		std::default_random_engine random_engine;
 		std::random_device random_device;
@@ -16,15 +22,24 @@ namespace Food
 		float cell_width;
 		float cell_height;
 
+		const float spawn_duration = 4.f;
+		float elapsed_duration;
+
 		FoodItem* createFood(sf::Vector2i position, FoodType type);
 		void spawnFood();
-		void destroyFood();
-
+		
 		sf::Vector2i getRandomPosition();
 		sf::Vector2i getValidSpawnPosition();
 		FoodType getRandomFoodType();
 
-		bool isValidPosition(std::vector<sf::Vector2i> position_data, sf::Vector2i food_position);
+		bool isValidPosition(std::vector<sf::Vector2i> position_data,
+			sf::Vector2i food_position);
+
+		void reset();
+		void updateElapsedDuration();
+		void handleFoodSpawning();
+		void destroyFood();
+
 	public:
 		FoodService();
 		~FoodService();
@@ -34,5 +49,6 @@ namespace Food
 		void render();
 
 		void startFoodSpawning();
+		void stopFoodSpawning();
 	};
 }

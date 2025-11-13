@@ -14,23 +14,34 @@ namespace Food
 	{
 		current_food_item = nullptr;
 	}
+
 	FoodService::~FoodService()
 	{
 		destroyFood();
 	}
+
 	void FoodService::initialize()
 	{
-
+		elapsed_duration = spawn_duration;
 	}
+
 	void FoodService::update()
 	{
-		if (current_food_item)current_food_item->update();
+		if (current_spawning_status == FoodSpawningStatus::ACTIVE)
+		{
+			updateElapsedDuration();
+			handleFoodSpawning();
+		}
+
+		if (current_food_item) current_food_item->update();
 	}
+
 	void FoodService::render()
 	{
 		if (current_food_item)current_food_item->render();
 
 	}
+
 	void FoodService::startFoodSpawning()
 	{
 		cell_width = ServiceLocator::getInstance()->getLevelService()->getCellHeight();
@@ -38,6 +49,14 @@ namespace Food
 
 		spawnFood();
 	}
+
+	void FoodService::stopFoodSpawning()
+	{
+		current_spawning_status = FoodSpawningStatus::IN_ACTIVE;
+		destroyFood();
+		reset();
+	}
+
 	FoodItem* FoodService::createFood(sf::Vector2i position, FoodType type)
 	{
 		FoodItem* food_item = new FoodItem();
@@ -45,14 +64,12 @@ namespace Food
 		food_item->initialize(position, cell_width, cell_height, type);
 		return food_item;
 	}
+
 	void FoodService::spawnFood()
 	{
 		current_food_item = createFood(getValidSpawnPosition(), getRandomFoodType());
 	}
-	void FoodService::destroyFood()
-	{
-		if (current_food_item)delete(current_food_item);
-	}
+
 	sf::Vector2i FoodService::getRandomPosition()
 	{
 		std::uniform_int_distribution<int> x_distribution(0, LevelModel::number_of_columns - 1);
@@ -63,6 +80,7 @@ namespace Food
 
 		return sf::Vector2i(x_position, y_position);
 	}
+
 	sf::Vector2i FoodService::getValidSpawnPosition()
 	{
 		std::vector<sf::Vector2i> player_position_data = ServiceLocator::getInstance()->getPlayerService()->getCurrentSnakePositionList();
@@ -74,6 +92,7 @@ namespace Food
 
 		return spawn_position;
 	}
+
 	bool FoodService::isValidPosition(std::vector<sf::Vector2i> position_data,
 		sf::Vector2i food_position)
 	{
@@ -83,9 +102,35 @@ namespace Food
 		}
 		return true;
 	}
+
 	FoodType FoodService::getRandomFoodType()
 	{
 		std::uniform_int_distribution<int> distribution(0, FoodItem::number_of_foods - 1);
 		return static_cast<FoodType>(distribution(random_engine));
+	}
+
+	void FoodService::reset()
+	{
+		elapsed_duration = 0.0f;
+	}
+
+	void FoodService::handleFoodSpawning()
+	{
+		if (elapsed_duration >= spawn_duration)
+		{
+			destroyFood();
+			reset();
+			spawnFood();
+		}
+	}
+
+	void FoodService::updateElapsedDuration()
+	{
+		elapsed_duration += ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+	}
+
+	void FoodService::destroyFood()
+	{
+		if (current_food_item)delete(current_food_item);
 	}
 }
