@@ -27,7 +27,7 @@ namespace Food
 		~FoodItem();
 
 		void initialize(sf::Vector2i grid_pos, float width,
-			float height, FoodType food_type);
+			float height, FoodType type);
 		void update();
 		void render();
 	};
