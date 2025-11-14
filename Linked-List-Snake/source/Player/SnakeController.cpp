@@ -2,6 +2,7 @@
 #include "../include/Global/ServiceLocator.h"
 #include "../include/Level/LevelService.h"
 #include "../include/Event/EventService.h"
+#include "../include/Element/ElementService.h"
 
 namespace Player
 {
@@ -9,6 +10,7 @@ namespace Player
 	using namespace LinkedList;
 	using namespace Level;
 	using namespace Event;
+	using namespace Element;
 
 	SnakeController::SnakeController()
 	{
@@ -118,9 +120,48 @@ namespace Player
 	}
 	void SnakeController::processElementsCollision()
 	{
+		ElementService* element_service = ServiceLocator::getInstance()->getElementService();
+		
+		if (element_service->processElementsCollision(single_linked_list->getHeadNode()))
+		{
+			current_snake_state = SnakeState::DEAD;
+			ServiceLocator::getInstance()->getSoundService()->playSound(Sound::SoundType::DEATH);
+		}
 	}
 	void SnakeController::processFoodCollision()
 	{
+		FoodService* food_service = ServiceLocator::getInstance()->getFoodService();
+		FoodType food_type;
+
+		if (food_service->processFoodCollision(single_linked_list->getHeadNode(), food_type))
+		{
+			ServiceLocator::getInstance()->getSoundService()->playSound(Sound::SoundType::PICKUP);
+
+			food_service->destroyFood();
+			onFoodCollected(food_type);
+		}
+	}
+	void SnakeController::onFoodCollected(FoodType food_type)
+	{
+		switch (food_type)
+		{
+		case Food::FoodType::APPLE:
+			break;
+		case Food::FoodType::MANGO:
+			break;
+		case Food::FoodType::ORANGE:
+			break;
+		case Food::FoodType::PIZZA:
+			break;
+		case Food::FoodType::BURGER:
+			break;
+		case Food::FoodType::CHEESE:
+			break;
+		case Food::FoodType::POISION:
+			break;
+		case Food::FoodType::ALCOHOL:
+			break;
+		}
 	}
 	void SnakeController::handleRestart()
 	{
@@ -164,6 +205,7 @@ namespace Player
 	{
 		return current_snake_state;
 	}
+
 	void SnakeController::destroy()
 	{
 		delete(single_linked_list);

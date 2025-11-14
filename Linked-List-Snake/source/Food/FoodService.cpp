@@ -3,12 +3,14 @@
 #include "../include/Global/ServiceLocator.h"
 #include "../include/Level/LevelModel.h"
 #include "../include/Time/TimeService.h"
+#include "../include/LinkedList/Node.h"
 
 namespace Food
 {
 	using namespace Level;
 	using namespace Global;
 	using namespace Time;
+	using namespace LinkedList;
 
 	FoodService::FoodService():random_engine(random_device())
 	{
@@ -101,6 +103,16 @@ namespace Food
 			if (food_position == position_data[i]) return false;
 		}
 		return true;
+	}
+
+	bool FoodService::processFoodCollision(Node* head_node, FoodType& out_food_type)
+	{
+		if (current_food_item && current_food_item->getFoodPosition() == head_node->body_part.getPosition())
+		{
+			out_food_type = current_food_item->getFoodType();
+			return true;
+		}
+		return false;
 	}
 
 	FoodType FoodService::getRandomFoodType()

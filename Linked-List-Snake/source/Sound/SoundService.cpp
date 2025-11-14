@@ -23,6 +23,8 @@ namespace Sound
 			printf("Error loading mouse click music file");
 		if (!buffer_death.loadFromFile(Config::death_sound_path))
 			printf("Error loading death music files");
+		if (!buffer_pickup.loadFromFile(Config::pickup_sound_path))
+			printf("Error loading pickup music files");
 	}
 
 	void SoundService::playSound(SoundType soundType)
@@ -34,6 +36,8 @@ namespace Sound
 			break;
 		case SoundType::DEATH:
 			sound_effect.setBuffer(buffer_death);
+		case SoundType::PICKUP:
+			sound_effect.setBuffer(buffer_pickup);
 		default:
 			printf("Invalid sound type");
 			return;

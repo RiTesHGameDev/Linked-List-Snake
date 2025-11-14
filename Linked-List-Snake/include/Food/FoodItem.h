@@ -30,5 +30,8 @@ namespace Food
 			float height, FoodType type);
 		void update();
 		void render();
+
+		FoodType getFoodType();
+		sf::Vector2i getFoodPosition();
 	};
 }

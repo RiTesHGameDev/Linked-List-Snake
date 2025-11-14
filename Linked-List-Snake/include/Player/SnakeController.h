@@ -2,10 +2,12 @@
 #include <SFML/Graphics.hpp>
 #include "../include/Player/Direction.h"
 #include "../include/LinkedList/SingleLinkedList.h"
+#include "../include/Food/FoodType.h"
 
 namespace Player
 {
 	using namespace LinkedList;
+	using namespace Food;
 
 	enum class InputState
 	{
@@ -53,6 +55,8 @@ namespace Player
 		void processBodyCollision();
 		void processElementsCollision();
 		void processFoodCollision();
+
+		void onFoodCollected(FoodType food_type);
 
 		void handleRestart();
 		void reset();

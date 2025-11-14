@@ -38,7 +38,7 @@ namespace Food
 		void reset();
 		void updateElapsedDuration();
 		void handleFoodSpawning();
-		void destroyFood();
+		
 
 	public:
 		FoodService();
@@ -47,8 +47,11 @@ namespace Food
 		void initialize();
 		void update();
 		void render();
+		void destroyFood();
 
 		void startFoodSpawning();
 		void stopFoodSpawning();
+
+		bool processFoodCollision(Node* head_node, FoodType& out_food_type);
 	};
 }

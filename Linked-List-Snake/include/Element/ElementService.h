@@ -1,6 +1,7 @@
 #pragma once
 #include "../include/Element/ElementData.h"
 #include "../include/Element/Obstacle.h"
+#include "../include/LinkedList/Node.h"
 #include <vector>
 
 namespace Element
@@ -25,5 +26,7 @@ namespace Element
 			float cell_width, float cell_height);
 
 		std::vector<sf::Vector2i> getElementsPositionList();
+
+		bool processElementsCollision(LinkedList::Node* head_node);
 	};
 }
