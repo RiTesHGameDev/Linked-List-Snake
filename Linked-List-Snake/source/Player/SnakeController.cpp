@@ -19,11 +19,16 @@ namespace Player
 	{
 		destroy();
 	}
+	void SnakeController::createLinkedList()
+	{
+		single_linked_list = new SingleLinkedList();
+	}
 	void SnakeController::initialize()
 	{
 		float width = ServiceLocator::getInstance()->getLevelService()->getCellWidth();
 		float height = ServiceLocator::getInstance()->getLevelService()->getCellHeight();
 
+		reset();
 		single_linked_list->initialize(width, height, default_position, default_direction);
 	}
 	
@@ -99,14 +104,32 @@ namespace Player
 	}
 	void SnakeController::processSnakeCollision()
 	{
+		processBodyCollision();
+		processElementsCollision();
+		processFoodCollision();
+	}
+	void SnakeController::processBodyCollision()
+	{
 		if (single_linked_list->processNodeCollision())
 		{
 			current_snake_state = SnakeState::DEAD;
+			ServiceLocator::getInstance()->getSoundService()->playSound(Sound::SoundType::DEATH);
 		}
+	}
+	void SnakeController::processElementsCollision()
+	{
+	}
+	void SnakeController::processFoodCollision()
+	{
 	}
 	void SnakeController::handleRestart()
 	{
+		restart_counter += ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
+		if (restart_counter >= restart_duration)
+		{
+			respawnSnake();
+		}
 	}
 	void SnakeController::reset()
 	{
@@ -125,16 +148,9 @@ namespace Player
 	}
 	void SnakeController::respawnSnake()
 	{
-		restart_counter += ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
-
-		if (restart_duration >= restart_duration)
-		{
-			respawnSnake();
-		}
-	}
-	void SnakeController::createLinkedList()
-	{
-		single_linked_list = new SingleLinkedList();
+		single_linked_list->removeAllNodes();
+		reset();
+		spawnSnake();
 	}
 	std::vector<sf::Vector2i> SnakeController::getCurrentSnakePositionList()
 	{

@@ -48,7 +48,12 @@ namespace Player
 		void processPlayerInput();
 		void updateSnakeDirection();
 		void moveSnake();
+
 		void processSnakeCollision();
+		void processBodyCollision();
+		void processElementsCollision();
+		void processFoodCollision();
+
 		void handleRestart();
 		void reset();
 		void destroy();
