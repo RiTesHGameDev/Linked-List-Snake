@@ -309,7 +309,7 @@ namespace LinkedList
 		prev_node->next = nullptr;
 	}
 
-	Direction SingleLinkedList::reversed()
+	Direction SingleLinkedList::reverse()
 	{
 		Node* cur_node = head_node;
 		Node* prev_node = nullptr;
