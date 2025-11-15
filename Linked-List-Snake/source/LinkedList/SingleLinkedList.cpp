@@ -8,6 +8,7 @@ namespace LinkedList
 	{
 		head_node = nullptr;
 	}
+
 	SingleLinkedList::~SingleLinkedList() = default;
 
 	void SingleLinkedList::initialize(float width, float height, sf::Vector2i position, Direction direction)
@@ -228,6 +229,7 @@ namespace LinkedList
 
 		cur_node->next = nullptr;
 		delete (cur_node);
+		linked_list_size--;
 	}
 	
 	void SingleLinkedList::removeAllNodes()
