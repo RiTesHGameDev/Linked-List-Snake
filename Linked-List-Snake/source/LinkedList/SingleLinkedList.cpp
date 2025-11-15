@@ -136,6 +136,18 @@ namespace LinkedList
 		linked_list_size++;
 	}
 
+	void SingleLinkedList::insertNodeAtMiddle()
+	{
+		if (head_node == nullptr)
+		{
+			insertNodeAtHead();
+			return;
+		}
+		int index = findMiddleNode();
+
+		insertNodeAtIndex(index);
+	}
+
 	void SingleLinkedList::shiftNodesAfterInsertion(Node* new_node, Node* cur_node, Node* prev_node)
 	{
 		Node* next_node = cur_node;
@@ -152,6 +164,21 @@ namespace LinkedList
 			next_node = next_node->next;
 		}
 		initializeNode(cur_node, prev_node, Operation::TAIL);
+	}
+
+	int SingleLinkedList::findMiddleNode()
+	{
+		Node* slow = head_node;
+		Node* fast = head_node;
+		int midIndex = 0;
+
+		while (fast != nullptr && fast->next != nullptr)
+		{
+			slow = slow->next;
+			fast = fast->next->next;
+			midIndex++;
+		}
+		return midIndex;
 	}
 
 	void SingleLinkedList::updateNodeDirection(Direction direction_to_set)
