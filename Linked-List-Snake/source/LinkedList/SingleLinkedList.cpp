@@ -16,6 +16,8 @@ namespace LinkedList
 		node_height = height;
 		default_position = position;
 		default_direction = direction;
+
+		linked_list_size = 0;
 	}
 
 	void SingleLinkedList::render()
@@ -64,6 +66,23 @@ namespace LinkedList
 		return default_position;
 	}
 
+	void SingleLinkedList::insertNodeAtHead()
+	{
+		linked_list_size++;
+		Node* new_node = createNode();
+
+		if (head_node == nullptr)
+		{
+			head_node = new_node;
+			initializeNode(new_node, nullptr, Operation::HEAD);
+			return;
+		}
+
+		initializeNode(new_node, head_node, Operation::HEAD);
+		new_node->next = head_node;
+		head_node = new_node;
+	}
+
 	void SingleLinkedList::insertNodeAtTail()
 	{
 		Node* new_node = createNode();
@@ -84,7 +103,7 @@ namespace LinkedList
 
 		//attach new node at the end
 		cur_node->next = new_node;
-		new_node->body_part.initialize(node_width, node_height, getNewNodePosition(cur_node), cur_node->body_part.getDirection());
+		initializeNode(new_node, cur_node, Operation::TAIL);
 	}
 
 	void SingleLinkedList::updateNodeDirection(Direction direction_to_set)

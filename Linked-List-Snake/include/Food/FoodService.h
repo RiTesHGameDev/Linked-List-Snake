@@ -1,10 +1,12 @@
 #pragma once
 #include "../include/Food/FoodItem.h"
+#include "../include/LinkedList/Node.h"
 #include <vector>
 #include <random>
 
 namespace Food
 {
+	using namespace LinkedList;
 	enum FoodSpawningStatus
 	{
 		ACTIVE,
