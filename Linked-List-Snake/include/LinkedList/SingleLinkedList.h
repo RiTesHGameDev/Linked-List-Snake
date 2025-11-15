@@ -30,7 +30,7 @@ namespace LinkedList
 
 		sf::Vector2i getNewNodePosition(Node* reference_node, Operation operation);
 		void initializeNode(Node* new_node, Node* reference_node, Operation operation);
-
+		Direction getReverseDirection(Direction reference_direction);
 	public:
 		SingleLinkedList();
 		~SingleLinkedList();
@@ -53,6 +53,8 @@ namespace LinkedList
 		Node* findNodeAtIndex(int index);
 
 		void removeHalfNodes();
+		Direction reversed();
+		void reverseNodeDirections();
 
 		void updateNodeDirection(Direction direction_to_set);
 		void updateNodePosition();
