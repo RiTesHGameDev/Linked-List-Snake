@@ -70,6 +70,7 @@ namespace Global
 			element_service->update();
 			food_service->update();
 		}
+
 		ui_service->update();
 	}
 
@@ -85,6 +86,7 @@ namespace Global
 			element_service->render();
 			food_service->render();
 		}
+
 		ui_service->render();
 	}
 

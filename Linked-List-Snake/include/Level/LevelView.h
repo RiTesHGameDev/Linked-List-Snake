@@ -28,7 +28,8 @@ namespace Level
 	public:
 		static const int border_thickness = 10;
 		static const int border_left_offset = 40;
-		static const int border_top_offset = 40;
+		static const int border_top_offset = 100;
+		static const int border_bottom_offset = 40;
 
 		LevelView();
 		~LevelView();

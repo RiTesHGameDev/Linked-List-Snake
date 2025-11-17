@@ -138,6 +138,7 @@
     <ClCompile Include="source\Element\Obstacle.cpp" />
     <ClCompile Include="source\Food\FoodItem.cpp" />
     <ClCompile Include="source\Food\FoodService.cpp" />
+    <ClCompile Include="source\UI\GameplayUI\GameplayUIController.cpp" />
     <ClCompile Include="source\Level\LevelController.cpp" />
     <ClCompile Include="source\Level\LevelModel.cpp" />
     <ClCompile Include="source\Level\LevelService.cpp" />
@@ -173,6 +174,7 @@
     <ClInclude Include="include\Food\FoodItem.h" />
     <ClInclude Include="include\Food\FoodService.h" />
     <ClInclude Include="include\Food\FoodType.h" />
+    <ClInclude Include="include\UI\GameplayUI\GameplayUIController.h" />
     <ClInclude Include="include\Level\LevelController.h" />
     <ClInclude Include="include\Level\LevelData.h" />
     <ClInclude Include="include\Level\LevelModel.h" />

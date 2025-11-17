@@ -36,8 +36,10 @@ namespace Sound
 			break;
 		case SoundType::DEATH:
 			sound_effect.setBuffer(buffer_death);
+			break;
 		case SoundType::PICKUP:
 			sound_effect.setBuffer(buffer_pickup);
+			break;
 		default:
 			printf("Invalid sound type");
 			return;

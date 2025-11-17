@@ -2,6 +2,7 @@
 #include "../include/Level/LevelService.h"
 #include "../include/Level/LevelController.h"
 #include "../include/Global/ServiceLocator.h"
+#include "../include/Level/LevelModel.h"
 
 namespace Level
 {
@@ -45,6 +46,9 @@ namespace Level
 	}
 	void LevelService::spawnFood()
 	{
+		float cell_width = getCellWidth();
+		float cell_height = getCellHeight();
+
 		ServiceLocator::getInstance()->getFoodService()->startFoodSpawning();
 	}
 	void LevelService::spawnLevelElements(LevelNumber level_to_load)
@@ -68,5 +72,9 @@ namespace Level
 	float LevelService::getCellHeight()
 	{
 		return level_controller->getCellHeight();
+	}
+	LevelNumber LevelService::getCurrentLevel()
+	{
+		return current_level;
 	}
 }

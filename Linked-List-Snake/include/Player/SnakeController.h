@@ -1,66 +1,86 @@
 #pragma once
-#include <SFML/Graphics.hpp>
-#include "../include/Player/Direction.h"
-#include "../include/LinkedList/SingleLinkedList.h"
-#include "../include/Food/FoodType.h"
+#include <SFML/System/Vector2.hpp>
+#include "LinkedList/Node.h"
+#include "LinkedList/SingleLinkedList.h"
+#include "Food/FoodType.h"
 
 namespace Player
 {
 	using namespace LinkedList;
-	using namespace Food;
+
+	enum class TimeComplexity
+	{
+		NONE,
+		ONE,
+		N,
+	};
+
+	enum class LinkedListOperations
+	{
+		NONE,
+		INSERT_AT_HEAD,
+		INSERT_AT_TAIL,
+		INSERT_AT_MID,
+		REMOVE_AT_HEAD,
+		REMOVE_AT_TAIL,
+		REMOVE_AT_MID,
+		DELETE_HALF_LIST,
+		REVERSE_LIST,
+	};
+
+	enum class SnakeState
+	{
+		ALIVE,
+		DEAD,
+	};
 
 	enum class InputState
 	{
 		WAITING,
 		PROCESSING
 	};
-	enum class SnakeState
-	{
-		ALIVE,
-		DEAD,
-	};
+
 	class SnakeController
 	{
 	private:
 		const int initial_snake_length = 10;
-		SnakeState current_snake_state;
+		const float movement_frame_duration = 0.1f;
+		const float restart_duration = 3.f;
 
-		//direction properties
+		const int minimum_snake_size = 3;
+
 		const sf::Vector2i default_position = sf::Vector2i(25, 13);
 		const Direction default_direction = Direction::RIGHT;
+
+		SnakeState current_snake_state;
+		float elapsed_duration;
+		float restart_counter;
+		InputState current_input_state;
 		Direction current_snake_direction;
 
-		//LinkedList
-		SingleLinkedList* single_linked_list;
+		int player_score;
+		TimeComplexity time_complexity;
+		LinkedListOperations last_linked_list_operation;
 
-		//delayed update or Snake speed
-		float elapsed_duration;
-		const float movement_frame_duration = 0.1f;
+		LinkedList::SingleLinkedList* single_linked_list;
 
-		//reset
-		const float restart_duration = 2.0f;
-		float restart_counter;
-
-		//InputState Properties
-		InputState current_input_state;
-
-		void delayedUpdate();
 		void createLinkedList();
-
 		void processPlayerInput();
 		void updateSnakeDirection();
+		void delayedUpdate();
 		void moveSnake();
-
 		void processSnakeCollision();
+
 		void processBodyCollision();
 		void processElementsCollision();
 		void processFoodCollision();
 
-		void onFoodCollected(FoodType food_type);
+		void OnFoodCollected(Food::FoodType food_type);
 
 		void handleRestart();
 		void reset();
 		void destroy();
+
 	public:
 		SnakeController();
 		~SnakeController();
@@ -75,5 +95,8 @@ namespace Player
 		SnakeState getSnakeState();
 
 		std::vector<sf::Vector2i> getCurrentSnakePositionList();
+		TimeComplexity getTimeComplexity();
+		LinkedListOperations getLastOperation();
+		int getPlayerScore();
 	};
 }

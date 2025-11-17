@@ -22,5 +22,8 @@ namespace Player
 		void spawnPlayer();
 
 		std::vector<sf::Vector2i> getCurrentSnakePositionList();
+		int getPlayerScore();
+		TimeComplexity getTimeComplexity();
+		LinkedListOperations getLastOperation();
 	};
 }

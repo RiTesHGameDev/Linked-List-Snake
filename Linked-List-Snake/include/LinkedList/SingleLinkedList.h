@@ -54,7 +54,7 @@ namespace LinkedList
 		Node* findNodeAtIndex(int index);
 
 		void removeHalfNodes();
-		Direction reversed();
+		Direction reverse();
 		void reverseNodeDirections();	
 
 		void updateNodeDirection(Direction direction_to_set);

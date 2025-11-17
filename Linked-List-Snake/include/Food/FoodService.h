@@ -7,6 +7,10 @@
 namespace Food
 {
 	using namespace LinkedList;
+
+	enum class FoodType;
+	class FoodItem;
+
 	enum FoodSpawningStatus
 	{
 		ACTIVE,

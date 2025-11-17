@@ -46,7 +46,9 @@ namespace Food
 
 	void FoodService::startFoodSpawning()
 	{
-		cell_width = ServiceLocator::getInstance()->getLevelService()->getCellHeight();
+		current_spawning_status = FoodSpawningStatus::ACTIVE;
+
+		cell_width = ServiceLocator::getInstance()->getLevelService()->getCellWidth();
 		cell_height = ServiceLocator::getInstance()->getLevelService()->getCellHeight();
 
 		spawnFood();
@@ -143,6 +145,7 @@ namespace Food
 
 	void FoodService::destroyFood()
 	{
-		if (current_food_item)delete(current_food_item);
+		delete current_food_item;
+		current_food_item = nullptr;
 	}
 }
