@@ -12,7 +12,7 @@ namespace LinkedListLib
 
     class LinkedList
     {
-    private:
+    protected:
         Node* head_node;
 
         float node_width;
