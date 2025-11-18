@@ -1,16 +1,15 @@
 #pragma once
 #include <SFML/System/Vector2.hpp>
 #include "../include/LinkedListLib/LinkedList.h"
-#include "../include/LinkedListLib/Node.h"
+#include "../include/LinkedListLib/SingleLinked/SingleNode.h"
 
 namespace LinkedListLib
 {
-	namespace SingleLinkedList
+	namespace SingleLinked
 	{
 		class SingleLinkedList:public LinkedList
 		{
 		private:
-
 			virtual Node* createNode()override;
 
 		public:
@@ -20,7 +19,7 @@ namespace LinkedListLib
 			void insertNodeAtTail() override;
 			void insertNodeAtHead() override;
 			void insertNodeAtMiddle() override;
-			void insertNodeAtIndex(int index, Node* new_node);
+			void insertNodeAtIndex(int index)override;
 
 			void shiftNodesAfterInsertion(Node* new_node, Node* cur_node, Node* prev_node);
 
@@ -35,9 +34,6 @@ namespace LinkedListLib
 			void shiftNodesAfterRemoval(Node* cur_node);
 
 			Direction reverse() override;
-			void reverseNodeDirections();
-
-
 		};
 	}
 }

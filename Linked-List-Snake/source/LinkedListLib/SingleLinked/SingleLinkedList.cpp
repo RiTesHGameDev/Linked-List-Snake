@@ -61,7 +61,7 @@ namespace LinkedListLib
             insertNodeAtIndex(midIndex);
         }
 
-        void SingleLinkedList::insertNodeAtIndex(int index,Node* new_node)
+        void SingleLinkedList::insertNodeAtIndex(int index)
         {
             if (index < 0 || index >= linked_list_size) return;
 
@@ -256,21 +256,9 @@ namespace LinkedListLib
             return head_node->body_part.getDirection();
         }
 
-        void SingleLinkedList::reverseNodeDirections()
-        {
-            Node* curr_node = head_node;
-
-            while (curr_node != nullptr)
-            {
-                curr_node->body_part.setDirection(getReverseDirection(curr_node->body_part.getPreviousDirection()));
-                curr_node = curr_node->next;
-            }
-
-        }
-
         Node* SingleLinkedList::createNode()
         {
-            return new Node();
+            return new SingleNode();
         }
     }
 }
