@@ -3,14 +3,14 @@
 #include "../include/Global/ServiceLocator.h"
 #include "../include/Level/LevelModel.h"
 #include "../include/Time/TimeService.h"
-#include "../include/LinkedList/Node.h"
+#include "../include/LinkedListLib/Node.h"
 
 namespace Food
 {
 	using namespace Level;
 	using namespace Global;
 	using namespace Time;
-	using namespace LinkedList;
+	using namespace LinkedListLib;
 
 	FoodService::FoodService():random_engine(random_device())
 	{

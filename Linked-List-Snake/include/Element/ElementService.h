@@ -1,7 +1,7 @@
 #pragma once
 #include "../include/Element/ElementData.h"
 #include "../include/Element/Obstacle.h"
-#include "../include/LinkedList/Node.h"
+#include "../include/LinkedListLib/Node.h"
 #include <vector>
 
 namespace Element

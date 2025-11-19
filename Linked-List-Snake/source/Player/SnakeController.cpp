@@ -6,7 +6,7 @@
 
 namespace Player
 {
-	using namespace LinkedList;
+	using namespace LinkedListLib::SingleLinked;
 	using namespace Global;
 	using namespace Level;
 	using namespace Event;

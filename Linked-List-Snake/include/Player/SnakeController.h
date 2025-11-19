@@ -1,12 +1,12 @@
 #pragma once
 #include <SFML/System/Vector2.hpp>
-#include "LinkedList/Node.h"
-#include "LinkedList/SingleLinkedList.h"
+#include "LinkedListLib/Node.h"
+#include "LinkedListLib/SingleLinked/SingleLinkedList.h"
 #include "Food/FoodType.h"
 
 namespace Player
 {
-	using namespace LinkedList;
+	using namespace LinkedListLib;
 
 	enum class TimeComplexity
 	{

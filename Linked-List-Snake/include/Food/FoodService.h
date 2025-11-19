@@ -1,12 +1,12 @@
 #pragma once
 #include "../include/Food/FoodItem.h"
-#include "../include/LinkedList/Node.h"
+#include "../include/LinkedListLib/Node.h"
 #include <vector>
 #include <random>
 
 namespace Food
 {
-	using namespace LinkedList;
+	using namespace LinkedListLib;
 
 	enum class FoodType;
 	class FoodItem;

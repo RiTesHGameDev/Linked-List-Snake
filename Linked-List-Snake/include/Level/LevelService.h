@@ -1,5 +1,5 @@
 #pragma once
-#include "../include/Level/LevelNumber.h"
+#include "../include/Level/LevelConfig.h"
 
 namespace Level
 {
