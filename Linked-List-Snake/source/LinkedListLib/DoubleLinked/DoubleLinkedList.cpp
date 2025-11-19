@@ -164,6 +164,65 @@ namespace LinkedListLib
 			delete cur_node;
 		}
 
+		void DoubleLinkedList::removeNodeAtMiddle()
+		{
+			if (head_node == nullptr) return;
+
+			int midIndex = findMiddleNode();  
+			removeNodeAt(midIndex);
+		}
+
+		void DoubleLinkedList::removeNodeAt(int index)
+		{
+			if (index < 0 || index >= linked_list_size) return;
+
+			if (index == 0)
+			{
+				removeNodeAtHead();
+			}
+			else
+			{
+				removeNodeAtIndex(index);
+			}
+		}
+
+		void DoubleLinkedList::removeNodeAtIndex(int index)
+		{
+			int current_index = 0;
+			Node* cur_node = head_node;
+			Node* prev_node = nullptr;
+
+			while (cur_node != nullptr && current_index < index)
+			{
+				prev_node = cur_node;
+				cur_node = cur_node->next;
+				current_index++;
+			}
+
+			if (prev_node != nullptr)
+			{
+				prev_node->next = cur_node->next;
+			}
+
+			if (cur_node->next != nullptr)
+			{
+				Node* next_node = cur_node->next;
+				static_cast<DoubleNode*>(next_node)->previous = prev_node;
+			}
+
+			shiftNodesAfterRemoval(cur_node);
+			delete(cur_node);
+			linked_list_size--;
+		}
+
+		void DoubleLinkedList::removeAllNodes()
+		{
+		}
+
+		void DoubleLinkedList::removeHalfNodes()
+		{
+		}
+
 
 	}
 }
