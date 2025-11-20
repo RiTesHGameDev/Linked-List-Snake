@@ -28,5 +28,7 @@ namespace Player
 		int getPlayerScore();
 		TimeComplexity getTimeComplexity();
 		LinkedListOperations getLastOperation();
+
+		bool isPlayerDead();
 	};
 }

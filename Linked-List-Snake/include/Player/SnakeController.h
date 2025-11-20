@@ -101,5 +101,7 @@ namespace Player
 		TimeComplexity getTimeComplexity();
 		LinkedListOperations getLastOperation();
 		int getPlayerScore();
+
+		bool SnakeController::isSnakeDead();
 	};
 }

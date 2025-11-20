@@ -285,6 +285,11 @@ namespace Player
 		return player_score;
 	}
 
+	bool SnakeController::isSnakeDead()
+	{
+		return true;
+	}
+
 	TimeComplexity SnakeController::getTimeComplexity()
 	{
 		return time_complexity;
