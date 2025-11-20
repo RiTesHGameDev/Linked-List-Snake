@@ -40,6 +40,7 @@ namespace Level
 		spawnPlayer();
 		spawnFood();
 	}
+
 	void LevelService::spawnPlayer()
 	{
 		ServiceLocator::getInstance()->getPlayerService()->spawnPlayer();
@@ -73,8 +74,16 @@ namespace Level
 	{
 		return level_controller->getCellHeight();
 	}
+	void LevelService::setCurrentLevelNumber(LevelNumber level_to_load)
+	{
+		current_level = level_to_load;
+	}
 	LevelNumber LevelService::getCurrentLevel()
 	{
 		return current_level;
+	}
+	LinkedListType LevelService::getCurrentLinkedListType()
+	{
+		return current_linked_list_type;
 	}
 }
