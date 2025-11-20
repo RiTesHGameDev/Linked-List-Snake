@@ -1,9 +1,12 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "../include/Player/SnakeController.h"
+#include <Level/LevelConfig.h>
 
 namespace Player
 {
+	using namespace Level;
+
 	class PlayerService
 	{
 	private:
@@ -19,7 +22,7 @@ namespace Player
 		void update();
 		void render();
 
-		void spawnPlayer();
+		void spawnPlayer(LinkedListType level_type);
 
 		std::vector<sf::Vector2i> getCurrentSnakePositionList();
 		int getPlayerScore();

@@ -27,8 +27,9 @@ namespace Player
 	{
 		snake_controller->render();
 	}
-	void PlayerService::spawnPlayer()
+	void PlayerService::spawnPlayer(LinkedListType level_type)
 	{
+		snake_controller->createLinkedList(level_type);
 		snake_controller->spawnSnake();
 	}
 	std::vector<sf::Vector2i> PlayerService::getCurrentSnakePositionList()
