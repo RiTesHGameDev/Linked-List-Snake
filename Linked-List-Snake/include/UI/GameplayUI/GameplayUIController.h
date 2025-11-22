@@ -21,15 +21,20 @@ namespace UI
 			const float time_complexity_text_x_position = 1330.f;
 			const float time_complexity_text_y_position = 45.f;
 
+			const float slogan_text_x_position = 1330.f;
+			const float slogan_text_y_position = 10.f;
+
 			UI::UIElement::TextView* level_number_text;
 			UI::UIElement::TextView* score_text;
 			UI::UIElement::TextView* time_complexity_text;
 			UI::UIElement::TextView* operation_text;
+			UI::UIElement::TextView* slogan_text;
 
 			void createTexts();
 			void initializeTexts();
 			void initializeLevelNumberText();
 			void initializeScoreText();
+			void initializeSloganText();
 
 			void updateLevelNumberText();
 			void updateScoreText();
@@ -44,6 +49,7 @@ namespace UI
 			void initializeOperationText();
 			void updateTimeComplexityText();
 			void updateOperationText();
+			void updateSloganText();
 
 			void initialize() override;
 			void update() override;

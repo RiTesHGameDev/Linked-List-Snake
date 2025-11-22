@@ -19,6 +19,7 @@ namespace Global
 		static const sf::String cheese_texture_path;
 		static const sf::String poision_texture_path;
 		static const sf::String alcohol_texture_path;
+		static const sf::String energy_drink_texture_path;
 
 		static const sf::String play_button_texture_path;
 		static const sf::String instructions_button_texture_path;

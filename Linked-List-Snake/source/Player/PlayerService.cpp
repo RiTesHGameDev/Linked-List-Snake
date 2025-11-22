@@ -49,6 +49,16 @@ namespace Player
 	{
 		return snake_controller->getLastOperation();
 	}
+
+	Slogan PlayerService::getSlogan()
+	{
+		return snake_controller->getSlogan();
+	}
+
+	bool PlayerService::isSpeedBoostActive()
+	{
+		return snake_controller->isSpeedBoostActive();
+	}
 	bool PlayerService::isPlayerDead()
 	{
 		return snake_controller->isSnakeDead();

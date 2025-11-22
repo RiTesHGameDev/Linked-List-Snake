@@ -28,6 +28,8 @@ namespace Player
 		int getPlayerScore();
 		TimeComplexity getTimeComplexity();
 		LinkedListOperations getLastOperation();
+		Slogan getSlogan();
+		bool isSpeedBoostActive();
 
 		bool isPlayerDead();
 	};

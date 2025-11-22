@@ -12,5 +12,6 @@ namespace Food
         MANGO,
         ORANGE,
         POISION,
+        ENERGY_DRINK,
     };
 }

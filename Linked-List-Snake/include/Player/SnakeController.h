@@ -19,6 +19,11 @@ namespace Player
 		N,
 	};
 
+	enum class Slogan
+	{
+		TURBO_SPEED,
+	};
+
 	enum class LinkedListOperations
 	{
 		NONE,
@@ -48,7 +53,7 @@ namespace Player
 	{
 	private:
 		const int initial_snake_length = 10;
-		const float movement_frame_duration = 0.1f;
+		float movement_frame_duration = 0.1f;
 		const float restart_duration = 3.f;
 
 		const int minimum_snake_size = 3;
@@ -65,8 +70,16 @@ namespace Player
 		int player_score;
 		TimeComplexity time_complexity;
 		LinkedListOperations last_linked_list_operation;
+		Slogan slogan;
 
 		LinkedList* linked_list;
+
+		//Speed-Boost
+		bool speed_boost_active = false;
+		float speed_boost_timer = 0.0f;
+		const float speed_boost_duration = 3.0f;
+		float normal_movement_speed = 0.1f;
+		float boosted_movement_speed = 0.08f;
 
 		void initializeLinkedList();
 		void processPlayerInput();
@@ -80,6 +93,10 @@ namespace Player
 		void processFoodCollision();
 
 		void OnFoodCollected(Food::FoodType food_type);
+
+		void handleSpeedBoostTimer();
+
+		float speedBoost();
 
 		void handleRestart();
 		void reset();
@@ -102,6 +119,10 @@ namespace Player
 		std::vector<sf::Vector2i> getCurrentSnakePositionList();
 		TimeComplexity getTimeComplexity();
 		LinkedListOperations getLastOperation();
+		Slogan getSlogan();
+
+		bool isSpeedBoostActive();
+
 		int getPlayerScore();
 
 		bool isSnakeDead();

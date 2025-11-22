@@ -70,6 +70,9 @@ namespace Food
 		case Food::FoodType::ALCOHOL:
 			return Config::alcohol_texture_path;
 
+		case Food::FoodType::ENERGY_DRINK:
+			return Config::energy_drink_texture_path;
+
 		default:
 			return "";
 		}

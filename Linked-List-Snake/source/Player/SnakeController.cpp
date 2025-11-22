@@ -19,6 +19,10 @@ namespace Player
 	SnakeController::SnakeController()
 	{
 		linked_list = nullptr;
+
+		movement_frame_duration = 0.1f;
+		normal_movement_speed = movement_frame_duration;
+		boosted_movement_speed = normal_movement_speed * 0.4f;
 	}
 
 	SnakeController::~SnakeController()
@@ -67,6 +71,8 @@ namespace Player
 
 	void SnakeController::update()
 	{
+		handleSpeedBoostTimer();
+
 		switch (current_snake_state)
 		{
 		case SnakeState::ALIVE:
@@ -129,6 +135,27 @@ namespace Player
 				moveSnake();
 			current_input_state = InputState::WAITING;
 		}
+	}
+
+	void SnakeController::handleSpeedBoostTimer()
+	{
+		if (!speed_boost_active) return;
+
+		speed_boost_timer += ServiceLocator::getInstance()
+			->getTimeService()->getDeltaTime();
+
+		if (speed_boost_timer >= speed_boost_duration)
+		{
+			movement_frame_duration = normal_movement_speed;
+			speed_boost_active = false;
+			speed_boost_timer = 0.f;
+		}
+	}
+
+	float SnakeController::speedBoost()
+	{
+		movement_frame_duration = boosted_movement_speed;
+		return movement_frame_duration;
 	}
 
 	void SnakeController::updateSnakeDirection()
@@ -246,6 +273,15 @@ namespace Player
 			time_complexity = TimeComplexity::N;
 			last_linked_list_operation = LinkedListOperations::REVERSE_LIST;
 			break;
+
+		case FoodType::ENERGY_DRINK:
+			//Speed Boost
+			speedBoost();
+			speed_boost_active = true;
+			speed_boost_timer = 0.f;
+			slogan = Slogan::TURBO_SPEED;
+			break;
+
 		}
 	}
 
@@ -277,6 +313,10 @@ namespace Player
 		current_input_state = InputState::WAITING;
 		time_complexity = TimeComplexity::NONE;
 		last_linked_list_operation = LinkedListOperations::NONE;
+
+		movement_frame_duration = normal_movement_speed;
+		speed_boost_active = false;
+		speed_boost_timer = 0.f;
 	}
 
 	void SnakeController::respawnSnake()
@@ -294,6 +334,11 @@ namespace Player
 	SnakeState SnakeController::getSnakeState()
 	{
 		return current_snake_state;
+	}
+
+	bool SnakeController::isSpeedBoostActive()
+	{
+		return speed_boost_active;
 	}
 
 	int SnakeController::getPlayerScore()
@@ -315,6 +360,12 @@ namespace Player
 	{
 		return last_linked_list_operation;
 	}
+
+	Slogan SnakeController::getSlogan()
+	{
+		return slogan;
+	}
+
 
 	std::vector<sf::Vector2i> SnakeController::getCurrentSnakePositionList()
 	{

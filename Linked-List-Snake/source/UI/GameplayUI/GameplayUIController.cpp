@@ -39,6 +39,7 @@ namespace UI
             score_text = new TextView();
             time_complexity_text = new TextView();
             operation_text = new TextView();
+            slogan_text = new TextView();
         }
 
         void GameplayUIController::initializeTexts()
@@ -47,6 +48,7 @@ namespace UI
             initializeScoreText();
             initializeTimeComplexityText();
             initializeOperationText();
+            initializeSloganText();
         }
 
         void GameplayUIController::initializeLevelNumberText()
@@ -57,6 +59,11 @@ namespace UI
         void GameplayUIController::initializeScoreText()
         {
             score_text->initialize("Score : 0", sf::Vector2f(score_text_x_position, text_y_position), FontType::BUBBLE_BOBBLE, font_size, sf::Color::Black);
+        }
+
+        void GameplayUIController::initializeSloganText()
+        {
+            slogan_text->initialize("", sf::Vector2f(slogan_text_x_position, slogan_text_y_position), FontType::BUBBLE_BOBBLE,font_size, sf::Color::Black);
         }
 
         void GameplayUIController::initializeTimeComplexityText()
@@ -152,20 +159,44 @@ namespace UI
             operation_text->update();
         }
 
+        void GameplayUIController::updateSloganText()
+        {
+            Slogan slogan = ServiceLocator::getInstance()->getPlayerService()->getSlogan();
+            sf::String slogan_context;
+
+            switch (slogan)
+            {
+            case Player::Slogan::TURBO_SPEED:
+                slogan_context = "TURBO SPEED";
+                break;
+            default:
+                break;
+            }
+            slogan_text->setText(":" + slogan_context);
+            slogan_text->update();
+        }
         void GameplayUIController::update()
         {
             updateLevelNumberText();
             updateScoreText();
             updateTimeComplexityText();
             updateOperationText();
+            updateSloganText();
         }
 
         void GameplayUIController::render()
         {
             level_number_text->render();
             score_text->render();
-            time_complexity_text->render();
-            operation_text->render();
+            if (ServiceLocator::getInstance()->getPlayerService()->isSpeedBoostActive() == false)
+            {
+                time_complexity_text->render();
+                operation_text->render();
+            }
+            else
+            {
+                slogan_text->render();
+            }
         }
 
         void GameplayUIController::show()
@@ -174,6 +205,7 @@ namespace UI
             score_text->show();
             time_complexity_text->show();
             operation_text->show();
+            slogan_text->show();
         }
 
         void GameplayUIController::destroy()
@@ -182,6 +214,7 @@ namespace UI
             delete (score_text);
             delete (time_complexity_text);
             delete (operation_text);
+            delete (slogan_text);
         }
 	}
 }
