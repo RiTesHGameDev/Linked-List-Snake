@@ -28,6 +28,10 @@ namespace Player
 
 	void SnakeController::initializeLinkedList()
 	{
+		if (linked_list == nullptr)
+		{
+			return;
+		}
 		float width = ServiceLocator::getInstance()->getLevelService()->getCellWidth();
 		float height = ServiceLocator::getInstance()->getLevelService()->getCellHeight();
 
@@ -46,12 +50,20 @@ namespace Player
 			linked_list = new DoubleLinkedList();
 			break;
 		default:
+			linked_list = nullptr;
 			break;
 		}
+		if (linked_list != nullptr)
 		initializeLinkedList();
 	}
 
-	void SnakeController::initialize(){}
+	void SnakeController::initialize()
+	{
+		if (linked_list == nullptr)
+		{
+			createLinkedList(Level::LinkedListType::SINGLE_LINKED_LIST);
+		}
+	}
 
 	void SnakeController::update()
 	{
@@ -70,6 +82,7 @@ namespace Player
 
 	void SnakeController::render()
 	{
+		if (linked_list == nullptr) return;
 		linked_list->render();
 	}
 
@@ -120,11 +133,13 @@ namespace Player
 
 	void SnakeController::updateSnakeDirection()
 	{
+		if (linked_list == nullptr) return;
 		linked_list->updateNodeDirection(current_snake_direction);
 	}
 
 	void SnakeController::moveSnake()
 	{
+		if (linked_list == nullptr) return;
 		linked_list->updateNodePosition();
 	}
 
@@ -137,6 +152,7 @@ namespace Player
 
 	void SnakeController::processBodyCollision()
 	{
+		if (linked_list == nullptr) return;
 		if (linked_list->processNodeCollision())
 		{
 			current_snake_state = SnakeState::DEAD;
@@ -287,7 +303,7 @@ namespace Player
 
 	bool SnakeController::isSnakeDead()
 	{
-		return true;
+		return current_snake_state == SnakeState::DEAD;
 	}
 
 	TimeComplexity SnakeController::getTimeComplexity()
@@ -302,11 +318,13 @@ namespace Player
 
 	std::vector<sf::Vector2i> SnakeController::getCurrentSnakePositionList()
 	{
+		if (linked_list == nullptr) return std::vector<sf::Vector2i>();
 		return linked_list->getNodesPositionList();
 	}
 
 	void SnakeController::destroy()
 	{
 		delete (linked_list);
+		linked_list = nullptr;
 	}
 }

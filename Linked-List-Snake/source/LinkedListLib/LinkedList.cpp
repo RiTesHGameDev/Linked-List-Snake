@@ -95,6 +95,8 @@ namespace LinkedListLib
 
     sf::Vector2i LinkedList::getNewNodePosition(Node* reference_node, Operation operation)
     {
+        if (reference_node == nullptr) return default_position;
+
         switch (operation)
         {
         case Operation::HEAD:
@@ -185,6 +187,8 @@ namespace LinkedListLib
             return Direction::RIGHT;
         case Direction::RIGHT:
             return Direction::LEFT;
+        default:
+            return default_direction;
         }
     }
 }

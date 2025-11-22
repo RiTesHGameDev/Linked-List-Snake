@@ -247,6 +247,26 @@ namespace LinkedListLib
 			prev_node->next = nullptr;
 		}
 
+		void DoubleLinkedList::shiftNodesAfterRemoval(Node* cur_node)
+		{
+			sf::Vector2i previous_node_position = cur_node->body_part.getPosition();
+			Direction previous_node_direction = cur_node->body_part.getDirection();
+			cur_node = cur_node->next;
+
+			while (cur_node != nullptr)
+			{
+				sf::Vector2i temp_node_position = cur_node->body_part.getPosition();
+				Direction temp_node_direction = cur_node->body_part.getDirection();
+
+				cur_node->body_part.setPosition(previous_node_position);
+				cur_node->body_part.setDirection(previous_node_direction);
+
+				cur_node = cur_node->next;
+				previous_node_position = temp_node_position;
+				previous_node_direction = temp_node_direction;
+			}
+		}
+
 		Direction DoubleLinkedList::reverse()
 		{
 			Node* cur_node = head_node;

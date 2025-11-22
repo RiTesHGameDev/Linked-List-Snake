@@ -5,10 +5,12 @@
 #include "LinkedListLib/SingleLinked/SingleLinkedList.h"
 #include "LinkedListLib/DoubleLinked/DoubleLinkedList.h"
 #include "Food/FoodType.h"
+#include "Level/LevelConfig.h"
 
 namespace Player
 {
 	using namespace LinkedListLib;
+	using namespace Level;
 
 	enum class TimeComplexity
 	{
@@ -102,6 +104,6 @@ namespace Player
 		LinkedListOperations getLastOperation();
 		int getPlayerScore();
 
-		bool SnakeController::isSnakeDead();
+		bool isSnakeDead();
 	};
 }
