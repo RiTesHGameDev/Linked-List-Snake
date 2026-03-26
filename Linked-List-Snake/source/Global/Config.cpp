@@ -26,6 +26,8 @@ namespace Global
 
 	const sf::String Config::alcohol_texture_path = "assets/textures/alcohol.png";
 
+	const sf::String Config::energy_drink_texture_path = "assets/textures/energy_drink.png";
+
 	const sf::String Config::play_button_texture_path = "assets/textures/play_button.png";
 
 	const sf::String Config::instructions_button_texture_path = "assets/textures/instructions_button.png";
@@ -37,6 +39,10 @@ namespace Global
 	const sf::String Config::level_one_button_texture_path = "assets/textures/level_one_button.png";
 
 	const sf::String Config::level_two_button_texture_path = "assets/textures/level_two_button.png";
+
+	const sf::String Config::level_three_button_texture_path = "assets/textures/level_three_button.png";
+
+	const sf::String Config::level_four_button_texture_path = "assets/textures/level_four_button.png";
 
 	const sf::String Config::single_linked_list_button_texture_path = "assets/textures/single_linked_list_button.png";
 
